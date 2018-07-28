@@ -1,7 +1,28 @@
 const connection = require("./connection.js");
 
+function printQuestionMarks(num) {
+    var arr = [];
+
+    for (var i = 0; i < num; i++) {
+        arr.push("?");
+    }
+
+    return arr.toString();
+}
+
+function objToSql(ob) {
+    var arr = [];
+
+    for (var key in ob) {
+        arr.push(key + "=" + ob[key]);
+    }
+
+    return arr.toString();
+}
+
+
 var orm = {
-    selectAll: function (tableInput, cb) {
+    all: function (tableInput, cb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function (err, result) {
             console.log(result[0].burger_name);
@@ -16,7 +37,7 @@ var orm = {
         });
     },
     
-    createTable: function (table, cols, vals, cb) {
+    create: function (table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
 
         queryString += " (";
@@ -36,7 +57,7 @@ var orm = {
         });
     },
     
-    updateTable: function (table, objColVals, condition, cb) {
+    update: function (table, objColVals, condition, cb) {
         var queryString = "UPDATE " + table;
 
         queryString += " SET ";

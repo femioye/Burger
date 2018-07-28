@@ -1,21 +1,21 @@
-const orm = require("../config/orm.js");
+var orm = require("../config/orm.js");
 
-const burger = {
-    selectAll: function (cb) {
-        orm.selectAll("burgers", function (res) {
+var burger = {
+    all: function (cb) {
+        orm.all("burgers", function (res) {
             cb(res);
         });
     },
-    createTable: function (name, cb) {
-        orm.createTable("burgers", [
+    create: function (name, cb) {
+        orm.create("burgers", [
             "burger_name", "devoured"
         ], [
                 name, false
             ], cb);
     },
-    updateTable: function (id, cb) {
+    update: function (id, cb) {
         var condition = "id=" + id;
-        orm.updateTable("burgers", {
+        orm.update("burgers", {
             devoured: true
         }, condition, cb);
     }
