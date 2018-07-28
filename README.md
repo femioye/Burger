@@ -1,1 +1,0 @@
-# Full Stack Burger Application. This application was built with the following tools and technology: Node, Express, Handlebars, ORM and MVC.
